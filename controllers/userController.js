@@ -2,6 +2,14 @@ const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const asyncCatch = require('../utils/catchAsync');
 
+exports.getUser = asyncCatch(async (req, res, next) => {
+  const users = (await User.find()).reverse();
+  res.status(200).json({
+    status: 'success',
+    users,
+  });
+});
+
 exports.createUser = asyncCatch(async (req, res, next) => {
   const userObj = {
     username: req.body.username,

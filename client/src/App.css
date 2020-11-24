@@ -27,7 +27,10 @@
 .App-link {
   color: #61dafb;
 }
-
+.MuiAppBar-colorPrimary {
+  color: #fff;
+  background-color: #5995fd;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
