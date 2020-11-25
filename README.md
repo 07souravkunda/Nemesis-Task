@@ -50,3 +50,4 @@ A react app will be running on your browser.
 * [Nodejs](https://nodejs.org/en/)
 * [mongoDB](https://www.mongodb.com/)
 * [express](https://expressjs.com/)
+* [jwt](https://jwt.io/)
