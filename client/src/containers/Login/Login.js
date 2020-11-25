@@ -3,17 +3,20 @@ import './login.css';
 import logo from './image.png';
 import axios from 'axios';
 import Dialog from '../../components/Dialog/Dialog';
+import Spinner from '../../components/Spinner/Spinner';
 axios.defaults.withCredentials = true;
 const Login = (props) => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [dg, setDg] = useState({});
+  const [loading, setLoading] = useState(false);
   const clickhandler = async (e) => {
     e.preventDefault();
     console.log(name, password);
     try {
+      setLoading(true);
       const res = await axios.post(
-        'https://secure-brook-21217.herokuapp.com//api/v1/signin',
+        'https://secure-brook-21217.herokuapp.com/api/v1/signin',
         {
           user: name,
           password: password,
@@ -27,8 +30,9 @@ const Login = (props) => {
         title: 'Error!!',
         content: er.response.data.message,
       });
-      alert(er.response.data.message + '!!');
+      // alert(er.response.data.message + '!!');
     }
+    setLoading(false);
   };
   return (
     <>
@@ -57,14 +61,18 @@ const Login = (props) => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <button
-                type="submit"
-                value="Login"
-                className="butt solid"
-                onClick={clickhandler}
-              >
-                Login
-              </button>
+              {loading ? (
+                <Spinner />
+              ) : (
+                <button
+                  type="submit"
+                  value="Login"
+                  className="butt solid"
+                  onClick={clickhandler}
+                >
+                  Login
+                </button>
+              )}
             </form>
           </div>
         </div>
@@ -94,7 +102,12 @@ const Login = (props) => {
             </div>
             <img src={logo} style={{ width: '40%' }} className="image" alt="" />
           </div>
-          <Dialog open={dg.open} content={dg.content} title={dg.title} />
+          <Dialog
+            open={dg.open}
+            content={dg.content}
+            title={dg.title}
+            handleClose={() => setDg({})}
+          />
         </div>
       </div>
     </>

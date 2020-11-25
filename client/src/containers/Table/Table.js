@@ -49,7 +49,7 @@ export default function CustomizedTables() {
 
   const getData = useCallback(async () => {
     const res = await axios.get(
-      'https://secure-brook-21217.herokuapp.com//api/v1/user/'
+      'https://secure-brook-21217.herokuapp.com/api/v1/user/'
     );
     console.log(res.data);
     setRows(
@@ -63,7 +63,7 @@ export default function CustomizedTables() {
   const deleteHandler = useCallback(async (id) => {
     try {
       const res = await axios.delete(
-        `https://secure-brook-21217.herokuapp.com//api/v1/user/${id}`
+        `https://secure-brook-21217.herokuapp.com/api/v1/user/${id}`
       );
       setDg({
         open: true,

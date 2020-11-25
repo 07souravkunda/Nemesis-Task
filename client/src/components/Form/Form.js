@@ -5,6 +5,7 @@ import validator from 'validator';
 import Button from '@material-ui/core/Button';
 import Axios from 'axios';
 import Dialog from '../Dialog/Dialog';
+import Spinner from '../Spinner/Spinner';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,11 +42,13 @@ const Form = () => {
   const [addresserror, setAddresserror] = useState();
 
   const [dg, setDg] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const clickHandler = useCallback(async () => {
     try {
+      setLoading(true);
       const res = await Axios.post(
-        'https://secure-brook-21217.herokuapp.com//api/v1/user/',
+        'https://secure-brook-21217.herokuapp.com/api/v1/user/',
         {
           username,
           email,
@@ -67,6 +70,7 @@ const Form = () => {
       });
       console.log(er);
     }
+    setLoading(false);
     setUsername('');
     setEmail('');
     setMobile('');
@@ -172,29 +176,33 @@ const Form = () => {
         />
       </div>
       <div>
-        <Button
-          disabled={
-            username === '' ||
-            mobile === '' ||
-            address === '' ||
-            email === '' ||
-            mobileerror ||
-            addresserror ||
-            usererror ||
-            emailerror
-          }
-          variant="contained"
-          style={{
-            borderRadius: 25,
-            backgroundColor: ' #5995fd',
-            padding: '14px 36px',
-            fontSize: '18px',
-            color: 'white',
-          }}
-          onClick={clickHandler}
-        >
-          SUBMIT
-        </Button>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Button
+            disabled={
+              username === '' ||
+              mobile === '' ||
+              address === '' ||
+              email === '' ||
+              mobileerror ||
+              addresserror ||
+              usererror ||
+              emailerror
+            }
+            variant="contained"
+            style={{
+              borderRadius: 25,
+              backgroundColor: ' #5995fd',
+              padding: '14px 36px',
+              fontSize: '18px',
+              color: 'white',
+            }}
+            onClick={clickHandler}
+          >
+            SUBMIT
+          </Button>
+        )}
       </div>
       <Dialog
         open={dg.open}

@@ -11,7 +11,7 @@ function App() {
   const getUser = async () => {
     try {
       const res = await axios.get(
-        'https://secure-brook-21217.herokuapp.com//api/v1/fetchUser/'
+        'https://secure-brook-21217.herokuapp.com/api/v1/fetchUser/'
       );
       console.log(res);
       setUser(res.data.user);
@@ -24,7 +24,7 @@ function App() {
   const logoutHandler = async () => {
     try {
       const res = await axios.get(
-        'https://secure-brook-21217.herokuapp.com//api/v1/logout/'
+        'https://secure-brook-21217.herokuapp.com/api/v1/logout/'
       );
       console.log(res);
       setUser(null);
