@@ -38,3 +38,15 @@ npm start
 ```
 
 A react app will be running on your browser.
+
+## Technology Stack
+
+**Frontend**
+* [React](https://reactjs.org/)
+* [Material UI](https://material-ui.com/getting-started/installation/)
+
+
+**Backend**
+* [Nodejs](https://nodejs.org/en/)
+* [mongoDB](https://www.mongodb.com/)
+* [express](https://expressjs.com/)
