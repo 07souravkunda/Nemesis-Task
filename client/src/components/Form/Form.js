@@ -47,15 +47,12 @@ const Form = () => {
   const clickHandler = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await Axios.post(
-        'https://secure-brook-21217.herokuapp.com/api/v1/user/',
-        {
-          username,
-          email,
-          mobile,
-          address,
-        }
-      );
+      const res = await Axios.post('http://localhost:3000/api/v1/user/', {
+        username,
+        email,
+        mobile,
+        address,
+      });
       console.log(res.data);
       setDg({
         open: true,

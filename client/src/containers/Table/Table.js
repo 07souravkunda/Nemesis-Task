@@ -48,9 +48,7 @@ export default function CustomizedTables() {
   const [dg, setDg] = useState({});
 
   const getData = useCallback(async () => {
-    const res = await axios.get(
-      'https://secure-brook-21217.herokuapp.com/api/v1/user/'
-    );
+    const res = await axios.get('http://localhost:3000/api/v1/user/');
     console.log(res.data);
     setRows(
       res.data.users.map((el) =>
@@ -62,9 +60,7 @@ export default function CustomizedTables() {
 
   const deleteHandler = useCallback(async (id) => {
     try {
-      const res = await axios.delete(
-        `https://secure-brook-21217.herokuapp.com/api/v1/user/${id}`
-      );
+      const res = await axios.delete(`http://localhost:3000/api/v1/user/${id}`);
       setDg({
         open: true,
         title: 'Success!!',

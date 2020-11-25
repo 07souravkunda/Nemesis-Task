@@ -15,13 +15,10 @@ const Login = (props) => {
     console.log(name, password);
     try {
       setLoading(true);
-      const res = await axios.post(
-        'https://secure-brook-21217.herokuapp.com/api/v1/signin',
-        {
-          user: name,
-          password: password,
-        }
-      );
+      const res = await axios.post('http://localhost:3000/api/v1/signin', {
+        user: name,
+        password: password,
+      });
       console.log(res.data);
       setLoading(false);
       props.setUser(res.data.user);
