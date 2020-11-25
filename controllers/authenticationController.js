@@ -18,7 +18,7 @@ exports.signin = (req, res, next) => {
 
   if (token) {
     console.log('cooked');
-    res.cookie('jwt', token, { httpOnly: false });
+    res.cookie('jwt', token, { httpOnly: false, secure: true });
   }
 
   res.status(200).json({
