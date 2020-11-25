@@ -23,8 +23,10 @@ const Login = (props) => {
         }
       );
       console.log(res.data);
+      setLoading(false);
       props.setUser(res.data.user);
     } catch (er) {
+      setLoading(false);
       setDg({
         open: true,
         title: 'Error!!',
@@ -32,7 +34,6 @@ const Login = (props) => {
       });
       // alert(er.response.data.message + '!!');
     }
-    setLoading(false);
   };
   return (
     <>
