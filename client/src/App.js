@@ -10,7 +10,9 @@ function App() {
 
   const getUser = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/v1/fetchUser/');
+      const res = await axios.get(
+        'https://secure-brook-21217.herokuapp.com//api/v1/fetchUser/'
+      );
       console.log(res);
       setUser(res.data.user);
     } catch (er) {
@@ -21,7 +23,9 @@ function App() {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/v1/logout/');
+      const res = await axios.get(
+        'https://secure-brook-21217.herokuapp.com//api/v1/logout/'
+      );
       console.log(res);
       setUser(null);
     } catch (er) {

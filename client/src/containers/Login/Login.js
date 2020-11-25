@@ -2,21 +2,31 @@ import React, { useState } from 'react';
 import './login.css';
 import logo from './image.png';
 import axios from 'axios';
+import Dialog from '../../components/Dialog/Dialog';
 axios.defaults.withCredentials = true;
 const Login = (props) => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [dg, setDg] = useState({});
   const clickhandler = async (e) => {
     e.preventDefault();
     console.log(name, password);
     try {
-      const res = await axios.post('http://localhost:3000/api/v1/signin', {
-        user: name,
-        password: password,
-      });
+      const res = await axios.post(
+        'https://secure-brook-21217.herokuapp.com//api/v1/signin',
+        {
+          user: name,
+          password: password,
+        }
+      );
       console.log(res.data);
       props.setUser(res.data.user);
     } catch (er) {
+      setDg({
+        open: true,
+        title: 'Error!!',
+        content: er.response.data.message,
+      });
       alert(er.response.data.message + '!!');
     }
   };
@@ -84,6 +94,7 @@ const Login = (props) => {
             </div>
             <img src={logo} style={{ width: '40%' }} className="image" alt="" />
           </div>
+          <Dialog open={dg.open} content={dg.content} title={dg.title} />
         </div>
       </div>
     </>

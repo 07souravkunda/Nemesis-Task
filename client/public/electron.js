@@ -1,0 +1,26 @@
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+
+let mainWindow;
+
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    show: false,
+  });
+  const startURL = `file://${path.join(__dirname, '../build/index.html')}`;
+  //   const startURL =
+  //     'https://github.com/electron-react-boilerplate/electron-react-boilerplate/blob/master/app/main.dev.ts';
+  console.log(startURL);
+
+  mainWindow.loadURL(startURL);
+
+  mainWindow.once('ready-to-show', () => mainWindow.show());
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
+  mainWindow.removeMenu();
+  mainWindow.setTitle('NamSYS');
+}
+app.on('ready', createWindow);
